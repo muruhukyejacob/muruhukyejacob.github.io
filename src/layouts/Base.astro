@@ -92,7 +92,7 @@ const person = {
         <div>
           <h2>Explore</h2>
           <ul>
-            <li><a href="/research/">Research & publications</a></li>
+            <li><a href="/research/">Research publications</a></li>
             <li><a href="/projects/">Projects</a></li>
             <li><a href="/services/">Consultancy services</a></li>
             <li><a href="/achievements/">Achievements & certificates</a></li>
@@ -101,7 +101,9 @@ const person = {
         <div>
           <h2>Profiles</h2>
           <ul>
+            <li><a href={site.links.scholar} rel="me noopener">Google Scholar</a></li>
             <li><a href={site.links.orcid} rel="me noopener">ORCID</a></li>
+            {site.links.researchgate && <li><a href={site.links.researchgate} rel="me noopener">ResearchGate</a></li>}
             <li><a href={site.links.linkedin} rel="me noopener">LinkedIn</a></li>
             <li><a href={site.links.github} rel="me noopener">GitHub</a></li>
           </ul>

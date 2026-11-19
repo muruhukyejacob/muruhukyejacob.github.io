@@ -7,7 +7,7 @@ import { site, stats, interests } from '../data/site';
 import { publications, typeLabels } from '../data/publications';
 import { projects, services } from '../data/work';
 
-const featuredPubs = publications.filter((p) => p.type === 'article');
+const featuredPubs = publications.filter((p) => p.featured).slice(0, 3);
 const featuredProjects = projects.filter((p) => p.image).slice(0, 3);
 const expertise = [
   { icon: 'chart', title: 'Biostatistics & modelling', text: 'GLMs, multilevel and survival models, causal inference and complex survey analysis in R, Stata and Python.' },
@@ -63,14 +63,14 @@ const expertise = [
   <section class="section alt">
     <div class="container">
       <div class="head-row">
-        <div><span class="eyebrow">Selected research</span><h2>Recent publications</h2></div>
-        <a href="/research/" class="btn btn-ghost">All 11 outputs <Icon name="arrow" size={18} /></a>
+        <div><span class="eyebrow">Selected research</span><h2>Featured publications</h2></div>
+        <a href="/research/" class="btn btn-ghost">All {publications.length} publications <Icon name="arrow" size={18} /></a>
       </div>
       <div class="grid grid-3" style="margin-top:1.5rem">
         {featuredPubs.map((p) => (
           <article class="card reveal pub">
-            <div><span class="tag">{typeLabels[p.type]}</span><span class="tag navy">{p.role}</span></div>
-            <h3><a href={p.url} rel="noopener" target="_blank">{p.title}</a></h3>
+            <div><span class="tag">{typeLabels[p.category]}</span><span class="tag navy">{p.role}</span></div>
+            <h3><a href={p.doi_url || p.official_url} rel="noopener" target="_blank">{p.title}</a></h3>
             <p class="muted"><em>{p.venue}</em> ({p.year})</p>
           </article>
         ))}

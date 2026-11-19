@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check-links": "node scripts/check-links.mjs"
+    "check-links": "node scripts/check-links.mjs",
+    "catalogue": "python3 scripts/export-catalogue.py"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.6",

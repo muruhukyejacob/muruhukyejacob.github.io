@@ -1,137 +1,215 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
-import { publications, typeLabels, underReview } from '../data/publications';
+import { publications, categories, typeLabels, underReview, profiles, details, citation, catalogue } from '../data/publications';
 import { site } from '../data/site';
 
-const counts = {
-  all: publications.length,
-  article: publications.filter((p) => p.type === 'article').length,
-  short: publications.filter((p) => p.type === 'short').length,
-  'working-paper': publications.filter((p) => p.type === 'working-paper').length,
-};
+const sorted = [...publications].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+const sections = (['A', 'B', 'C', 'D'] as const)
+  .map((c) => ({ code: c, title: categories[c], items: sorted.filter((p) => p.category === c) }))
+  .filter((s) => s.items.length);
+const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
 const firstAuthor = publications.filter((p) => p.role.startsWith('First')).length;
+const counts = Object.fromEntries(sections.map((s) => [s.code, s.items.length]));
 const isMe = (a: string) => /Muruhukye/.test(a);
+const preprints = catalogue.preprints;
 
 const jsonld = {
   '@context': 'https://schema.org',
   '@graph': publications.map((p) => ({
-    '@type': p.type === 'working-paper' ? 'Report' : 'ScholarlyArticle',
+    '@type': p.category === 'C' ? 'Report' : 'ScholarlyArticle',
+    '@id': p.doi_url || p.official_url,
     headline: p.title,
     name: p.title,
-    datePublished: p.date ?? String(p.year),
-    url: p.url,
-    ...(p.doi ? { identifier: `https://doi.org/${p.doi}` } : {}),
-    isPartOf: { '@type': 'Periodical', name: p.venue },
-    author: (p.authors.length ? p.authors : [site.altName]).map((n) => ({ '@type': 'Person', name: n })),
+    datePublished: p.date || String(p.year),
+    url: p.doi_url || p.official_url,
+    ...(p.doi ? { identifier: { '@type': 'PropertyValue', propertyID: 'DOI', value: p.doi } } : {}),
+    sameAs: [p.official_url, p.scholar_url, p.researchgate_url, p.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/` : ''].filter(Boolean),
+    isPartOf: { '@type': p.category === 'C' ? 'CreativeWorkSeries' : 'Periodical', name: p.venue },
+    publisher: { '@type': 'Organization', name: p.publisher },
+    ...(p.license ? { license: p.license } : {}),
+    abstract: p.summary,
+    author: p.authors.map((n) => (isMe(n) ? { '@type': 'Person', name: n, sameAs: site.links.orcid } : { '@type': 'Person', name: n })),
   })),
 };
 ---
-<Base title="Research & Publications" description="Publications by Muruhukye Jacob (Jacob Muruhukye): maternal health, tuberculosis genomics, clinical trials in Africa and urban land governance, with DOI links." jsonld={jsonld}>
-  <PageHero eyebrow="Research & publications" title="Publications" lead={`${counts.all} research outputs in 2026 — ${counts.article} full-length articles, ${counts.short} short papers and ${counts['working-paper']} working paper — including ${firstAuthor} as first author.`}>
-    <div class="profile-links">
-      <a class="btn btn-accent" href={site.links.orcid} rel="noopener" target="_blank">ORCID profile <Icon name="external" size={16} /></a>
-    </div>
-  </PageHero>
-
-  <section class="section">
+<Base title="Research Publications — Muruhukye Jacob" description="Complete, verified list of research publications by Muruhukye Jacob (Jacob Muruhukye): maternal health, tuberculosis genomics, clinical-trial research in Africa and urban land governance, with DOI links and full text." jsonld={jsonld}>
+  <section class="page-hero">
     <div class="container">
-      <div class="filters" role="group" aria-label="Filter publications">
-        <div class="chips">
-          <button class="chip active" data-filter="all" aria-pressed="true">All <span>{counts.all}</span></button>
-          <button class="chip" data-filter="article" aria-pressed="false">Full-length articles <span>{counts.article}</span></button>
-          <button class="chip" data-filter="short" aria-pressed="false">Short papers <span>{counts.short}</span></button>
-          <button class="chip" data-filter="working-paper" aria-pressed="false">Working papers <span>{counts['working-paper']}</span></button>
-          <button class="chip" data-filter="first" aria-pressed="false">First author <span>{firstAuthor}</span></button>
-        </div>
+      <span class="eyebrow">Research & publications</span>
+      <h1>Research Publications — Muruhukye Jacob</h1>
+      <p class="lead">{publications.length} verified research outputs — {counts.A ?? 0} full-length journal articles, {counts.B ?? 0} short research articles and {counts.C ?? 0} working paper — including {firstAuthor} as first author.</p>
+      <div class="profile-links">
+        {profiles.google_scholar && <a class="btn btn-accent" href={profiles.google_scholar} rel="noopener" target="_blank"><Icon name="cap" size={18} /> Google Scholar</a>}
+        {profiles.researchgate && <a class="btn btn-light" href={profiles.researchgate} rel="noopener" target="_blank"><Icon name="people" size={18} /> ResearchGate</a>}
+        <a class="btn btn-light" href={profiles.orcid} rel="noopener" target="_blank"><Icon name="orcid" size={18} /> ORCID</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bio-section">
+    <div class="container bio">
+      <h2>Academic biography</h2>
+      <p>Muruhukye Jacob is a Ugandan biostatistician and researcher at Makerere University’s Centre for Climate Change Research and Innovation (MUCCRI) and the Urban Action Lab. He holds a BSc in Statistics from Kyambogo University and is completing a Master of Biostatistics at Makerere University School of Public Health. His research applies survey-weighted, multilevel and causal-inference methods to maternal and reproductive health, uses registry data to examine the clinical-trial and genomic research landscape in Africa, and contributes statistical analysis to tuberculosis genomics and urban land-governance studies. He also leads data systems and analysis for climate change and health research in Uganda.</p>
+    </div>
+  </section>
+
+  <section class="section pubs-section">
+    <div class="container">
+      <div class="toolbar" role="search">
         <label class="search">
-          <span class="visually-hidden">Search publications</span>
-          <input type="search" id="pub-search" placeholder="Search title, journal, co-author or topic…" />
+          <span class="vh">Search by title, author or DOI</span>
+          <Icon name="design" size={18} />
+          <input type="search" id="pub-search" placeholder="Search by title, author or DOI…" autocomplete="off" />
         </label>
+        <label class="sel"><span class="vh">Filter by year</span>
+          <select id="pub-year"><option value="">All years</option>{years.map((y) => <option value={y}>{y}</option>)}</select>
+        </label>
+        <label class="sel"><span class="vh">Filter by type</span>
+          <select id="pub-type">
+            <option value="">All types</option>
+            {sections.map((s) => <option value={s.code}>{s.title} ({s.items.length})</option>)}
+          </select>
+        </label>
+        <label class="chk"><input type="checkbox" id="pub-first" /> First author only</label>
       </div>
       <p id="pub-count" class="muted" aria-live="polite"></p>
 
-      <ol class="pub-list">
-        {publications.map((p) => (
-          <li class="pub card" data-type={p.type} data-first={p.role.startsWith('First') ? 'yes' : 'no'}
-              data-text={[p.title, p.venue, p.authors.join(' '), p.topics.join(' '), p.role].join(' ').toLowerCase()}>
-            <div class="meta">
-              <span class="tag">{typeLabels[p.type]}</span>
-              <span class="tag navy">{p.role}</span>
-              {p.topics.map((t) => <span class="tag teal">{t}</span>)}
-            </div>
-            <h3><a href={p.url} rel="noopener" target="_blank">{p.title}</a></h3>
-            {p.authors.length > 0 && (
-              <p class="authors">{p.authors.map((a, i) => <>{isMe(a) ? <strong>{a}</strong> : a}{i < p.authors.length - 1 ? ', ' : ''}</>)}</p>
-            )}
-            <p class="venue"><em>{p.venue}</em>{p.details ? `, ${p.details}` : ''} ({p.year})</p>
-            {p.summary && <p class="summary">{p.summary}</p>}
-            <div class="links">
-              <a href={p.url} rel="noopener" target="_blank">{p.doi ? `DOI: ${p.doi}` : 'Read publication'} <Icon name="external" size={14} /></a>
-            </div>
-          </li>
-        ))}
-      </ol>
+      {sections.map((s) => (
+        <section class="cat" data-cat={s.code} aria-labelledby={`cat-${s.code}`}>
+          <h2 id={`cat-${s.code}`}>{s.title} <span class="n">{s.items.length}</span></h2>
+          <ol class="pub-list">
+            {s.items.map((p) => (
+              <li class="pub card" id={p.id} data-cat={p.category} data-year={p.year} data-first={p.role.startsWith('First') ? '1' : '0'}
+                  data-text={[p.title, p.authors.join(' '), p.doi, p.venue, p.topics.join(' ')].join(' ').toLowerCase()}>
+                <div class="meta">
+                  <span class="tag">{typeLabels[p.category]}</span>
+                  <span class="tag navy">{p.role}</span>
+                  <span class="tag teal">{p.year}</span>
+                </div>
+                <h3><a href={p.doi_url || p.official_url} rel="noopener" target="_blank">{p.title}</a></h3>
+                <p class="authors">{p.authors.map((a, i) => <>{isMe(a) ? <strong>{a}</strong> : a}{i < p.authors.length - 1 ? ', ' : ''}</>)}</p>
+                <p class="venue"><em>{p.venue}</em>{details(p) ? `, ${details(p)}` : ''} ({p.year}){p.status.startsWith('Published (') ? ` · ${p.status.replace('Published ', '')}` : ''}</p>
+                {p.summary && <p class="summary">{p.summary}</p>}
+                <div class="links">
+                  {p.doi && <a href={p.doi_url} rel="noopener" target="_blank">DOI: {p.doi}</a>}
+                  {!p.doi && <a href={p.official_url} rel="noopener" target="_blank">Publisher page</a>}
+                  {p.oa_url && <a href={p.oa_url} rel="noopener" target="_blank">Full text{p.license ? ` (${p.license})` : ''}</a>}
+                  {p.pmid && <a href={`https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/`} rel="noopener" target="_blank">PubMed</a>}
+                  {p.scholar_url && <a href={p.scholar_url} rel="noopener" target="_blank">Google Scholar</a>}
+                  {p.researchgate_url && <a href={p.researchgate_url} rel="noopener" target="_blank">ResearchGate</a>}
+                  <button class="cite" type="button" data-cite={citation(p)}>Copy citation</button>
+                </div>
+                {p.alt_versions.filter((v) => v.doi).map((v) => (
+                  <p class="alt">Also available: <a href={v.url} rel="noopener" target="_blank">{v.label}</a></p>
+                ))}
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+      <p id="no-results" class="card" hidden>No publications match your search. <button type="button" id="reset" class="linkish">Clear filters</button></p>
 
-      <div class="card review">
-        <h3>Manuscripts under review</h3>
-        <ul>{underReview.map((u) => <li>{u}</li>)}</ul>
-        <p class="muted" style="margin:0">Titles will be added once the manuscripts are accepted.</p>
+      <section class="cat other" aria-labelledby="cat-E">
+        <h2 id="cat-E">{categories.E}</h2>
+        <ul>
+          {preprints.map((pp) => <li><a href={pp.doi_url} rel="noopener" target="_blank">{pp.title}</a> — <em>{pp.venue}</em> ({pp.year}). Preprint of the <em>Discover Public Health</em> article above; not counted separately.</li>)}
+          {underReview.map((u) => <li>{u.title} — {u.status.toLowerCase()} at <em>{u.venue}</em>. {u.note}.</li>)}
+        </ul>
+      </section>
+
+      <div class="downloads">
+        <a class="btn btn-ghost" href="/data/publications.csv" download><Icon name="download" size={18} /> Publication list (CSV)</a>
+        <a class="btn btn-ghost" href="/data/publications.bib" download><Icon name="download" size={18} /> Citations (BibTeX)</a>
       </div>
-      <p class="muted note">Short papers appear in <em>Synthesis</em> as research letters. Summaries are brief descriptions written for this site; please consult each publication for the full abstract.</p>
+      <p class="muted note">Short research articles appear in <em>Synthesis</em> as E156 research letters (open access, CC BY 4.0). Summaries are brief descriptions written for this site; see each publication for its full abstract. Last verified {catalogue.updated}.</p>
     </div>
   </section>
 </Base>
 
 <style>
-  .profile-links { margin-top: 1.4rem; }
-  .filters { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
-  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
-  .chip { border: 1px solid var(--line); background: #fff; padding: .5rem .9rem; border-radius: 999px; font: inherit; font-size: .92rem; font-weight: 600; color: var(--navy); cursor: pointer; }
-  .chip span { color: var(--muted); font-weight: 500; margin-left: .2rem; }
-  .chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .chip.active span { color: #c9d6e4; }
-  .search input { width: min(360px, 100%); padding: .65rem 1rem; border: 1px solid var(--line); border-radius: 999px; font: inherit; font-size: .95rem; background: #fff; }
-  .search { flex: 1 1 260px; display: flex; justify-content: flex-end; }
-  @media (max-width: 700px) { .search { justify-content: stretch; } .search input { width: 100%; } }
-  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .pub-list { list-style: none; padding: 0; margin: 1rem 0 2rem; display: grid; gap: 1rem; }
-  .pub h3 { font-size: 1.15rem; margin: .5rem 0 .4rem; }
+  .profile-links { margin-top: 1.4rem; display: flex; gap: .7rem; flex-wrap: wrap; }
+  .btn-light { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.5); }
+  .btn-light:hover { background: #fff; color: var(--navy); }
+  .bio-section { padding-bottom: 0; }
+  .bio { max-width: 880px; }
+  .bio h2 { font-size: 1.5rem; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: .8rem; box-shadow: var(--shadow); position: sticky; top: 76px; z-index: 5; }
+  .search { flex: 1 1 280px; display: flex; align-items: center; gap: .5rem; border: 1px solid #cfd5dc; border-radius: 999px; padding: 0 .9rem; color: var(--muted); }
+  .search input { border: 0; outline: 0; font: inherit; font-size: .97rem; padding: .6rem 0; width: 100%; background: transparent; }
+  .search:focus-within { border-color: var(--navy); }
+  .sel select { font: inherit; font-size: .93rem; padding: .55rem .8rem; border: 1px solid #cfd5dc; border-radius: 999px; background: #fff; color: var(--navy); max-width: 100%; }
+  .chk { display: flex; gap: .4rem; align-items: center; font-size: .93rem; font-weight: 600; color: var(--navy); }
+  @media (max-width: 700px) { .toolbar { position: static; } .sel, .sel select { width: 100%; } }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  #pub-count { margin: .9rem 0 0; }
+  .cat { margin-top: 2.2rem; }
+  .cat h2 { font-size: 1.45rem; display: flex; align-items: center; gap: .6rem; }
+  .cat .n { font-family: var(--sans); font-size: .85rem; background: var(--navy); color: #fff; border-radius: 999px; padding: .1rem .6rem; }
+  .pub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  .pub { scroll-margin-top: 150px; }
+  .pub h3 { font-size: 1.12rem; margin: .5rem 0 .4rem; }
   .pub h3 a { color: var(--navy); text-decoration: none; }
   .pub h3 a:hover { text-decoration: underline; }
   .authors { font-size: .95rem; margin-bottom: .2rem; }
-  .venue { color: var(--muted); margin-bottom: .5rem; }
-  .summary { font-size: .97rem; }
-  .links a { font-weight: 600; font-size: .92rem; display: inline-flex; gap: .3rem; align-items: center; }
-  .review ul { padding-left: 1.1rem; }
+  .venue { color: var(--muted); margin-bottom: .5rem; font-size: .95rem; }
+  .summary { font-size: .96rem; }
+  .links { display: flex; flex-wrap: wrap; gap: .4rem .9rem; align-items: center; }
+  .links a, .cite { font-weight: 600; font-size: .9rem; }
+  .cite { background: none; border: 1px solid var(--line); border-radius: 999px; padding: .25rem .7rem; color: var(--navy); cursor: pointer; font-family: inherit; }
+  .cite:hover { border-color: var(--navy); }
+  .alt { font-size: .88rem; color: var(--muted); margin: .6rem 0 0; }
+  .other ul { padding-left: 1.1rem; }
+  .other li { margin: .5rem 0; }
+  .downloads { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 2rem; }
   .note { font-size: .9rem; margin-top: 1rem; }
+  .linkish { background: none; border: 0; color: var(--teal); text-decoration: underline; cursor: pointer; font: inherit; }
+  @media print { .toolbar, .downloads, .cite, .profile-links { display: none !important; } }
 </style>
 
 <script>
-  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
-  const items = document.querySelectorAll<HTMLElement>('.pub');
-  const search = document.getElementById('pub-search') as HTMLInputElement;
+  const q = document.getElementById('pub-search') as HTMLInputElement;
+  const yearSel = document.getElementById('pub-year') as HTMLSelectElement;
+  const typeSel = document.getElementById('pub-type') as HTMLSelectElement;
+  const first = document.getElementById('pub-first') as HTMLInputElement;
+  const items = [...document.querySelectorAll<HTMLElement>('.pub')];
+  const cats = [...document.querySelectorAll<HTMLElement>('.cat[data-cat]')];
   const count = document.getElementById('pub-count')!;
-  let filter = 'all';
+  const none = document.getElementById('no-results')!;
+
+  const params = new URLSearchParams(location.search);
+  q.value = params.get('q') ?? '';
+  yearSel.value = params.get('year') ?? '';
+  typeSel.value = params.get('type') ?? '';
+  first.checked = params.get('first') === '1';
+
   function apply() {
-    const q = search.value.trim().toLowerCase();
+    const terms = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
     let n = 0;
     items.forEach((el) => {
-      const okType = filter === 'all' || (filter === 'first' ? el.dataset.first === 'yes' : el.dataset.type === filter);
-      const okText = !q || (el.dataset.text ?? '').includes(q);
-      const show = okType && okText;
-      el.hidden = !show;
-      if (show) n++;
+      const ok = (!yearSel.value || el.dataset.year === yearSel.value)
+        && (!typeSel.value || el.dataset.cat === typeSel.value)
+        && (!first.checked || el.dataset.first === '1')
+        && terms.every((t) => (el.dataset.text ?? '').includes(t));
+      el.hidden = !ok;
+      if (ok) n++;
     });
+    cats.forEach((c) => { c.hidden = !c.querySelector('.pub:not([hidden])'); });
+    none.hidden = n > 0;
     count.textContent = `Showing ${n} of ${items.length} publications`;
+    const p = new URLSearchParams();
+    if (q.value.trim()) p.set('q', q.value.trim());
+    if (yearSel.value) p.set('year', yearSel.value);
+    if (typeSel.value) p.set('type', typeSel.value);
+    if (first.checked) p.set('first', '1');
+    history.replaceState(null, '', p.toString() ? `?${p}` : location.pathname);
   }
-  chips.forEach((c) => c.addEventListener('click', () => {
-    chips.forEach((x) => { x.classList.remove('active'); x.setAttribute('aria-pressed', 'false'); });
-    c.classList.add('active'); c.setAttribute('aria-pressed', 'true');
-    filter = c.dataset.filter!;
-    apply();
+  [q, yearSel, typeSel, first].forEach((el) => el.addEventListener('input', apply));
+  document.getElementById('reset')?.addEventListener('click', () => { q.value = ''; yearSel.value = ''; typeSel.value = ''; first.checked = false; apply(); });
+  document.querySelectorAll<HTMLButtonElement>('.cite').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.cite!); b.textContent = 'Copied'; }
+    catch { b.textContent = 'Copy failed'; }
+    setTimeout(() => (b.textContent = 'Copy citation'), 1800);
   }));
-  search.addEventListener('input', apply);
   apply();
 </script>

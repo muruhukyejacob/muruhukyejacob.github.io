@@ -1,0 +1,603 @@
+{
+  "person": "Muruhukye Jacob",
+  "name_variants": [
+    "Muruhukye Jacob",
+    "Jacob Muruhukye",
+    "Muruhukye J.",
+    "J Muruhukye"
+  ],
+  "orcid": "0009-0003-7534-7674",
+  "profiles": {
+    "orcid": "https://orcid.org/0009-0003-7534-7674",
+    "google_scholar": "https://scholar.google.com/citations?user=0k0jKDUAAAAJ",
+    "researchgate": ""
+  },
+  "updated": "2026-11-19",
+  "categories": {
+    "A": "Full-length peer-reviewed journal articles",
+    "B": "Short research articles and published abstracts",
+    "C": "Working papers and technical reports",
+    "D": "Conference proceedings and presentations",
+    "E": "Preprints and manuscripts under review"
+  },
+  "publications": [
+    {
+      "id": "muruhukye2026anc",
+      "category": "A",
+      "type": "Full-length article",
+      "title": "Determinants of optimal number of ANC visits among women of reproductive age in Uganda using modified poisson GLM regression analysis",
+      "authors": [
+        "Jacob Muruhukye",
+        "Kelly Taremwa",
+        "Christopher Tibamwenda"
+      ],
+      "role": "First author",
+      "year": 2026,
+      "date": "2026-11-03",
+      "venue": "Maternal Health, Neonatology and Perinatology",
+      "publisher": "Springer Nature (BMC)",
+      "volume": "12",
+      "issue": "1",
+      "article_number": "61",
+      "pages": "",
+      "doi": "10.1186/s40748-026-00308-0",
+      "official_url": "https://link.springer.com/article/10.1186/s40748-026-00308-0",
+      "pmid": "42978023",
+      "pmcid": "PMC13729505",
+      "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13729505/",
+      "license": "CC BY-NC-ND 4.0",
+      "status": "Published",
+      "featured": true,
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:YsMSGLbcyi4C",
+      "in_scholar": "Yes",
+      "summary": "Survey-weighted modified Poisson analysis of 3,477 women in the 2024 Uganda Malaria Indicator Survey, identifying the factors associated with attending at least four antenatal care visits (77.7% did so).",
+      "topics": [
+        "Maternal health",
+        "Survey data"
+      ],
+      "alt_versions": [],
+      "flags": [],
+      "doi_url": "https://doi.org/10.1186/s40748-026-00308-0",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": ""
+    },
+    {
+      "id": "kyabaggu2026sp110",
+      "category": "A",
+      "type": "Full-length article",
+      "title": "Effect of SP110 single nucleotide polymorphisms on expression of selected cytokines in a Ugandan population with pulmonary tuberculosis",
+      "authors": [
+        "Denis S. Kyabaggu",
+        "Anna Ritah Namuganga",
+        "Jacob Muruhukye",
+        "Eric Katagirya",
+        "Bernard S. Bagaya",
+        "Rose Nabatanzi",
+        "David Patrick Kateete",
+        "Irene Andia-Biraro",
+        "Harriet Mayanja-Kizza",
+        "Lydia Nakiyingi"
+      ],
+      "role": "Third and corresponding author",
+      "year": 2026,
+      "date": "2026-08-10",
+      "venue": "BMC Medical Genomics",
+      "publisher": "Springer Nature (BMC)",
+      "volume": "",
+      "issue": "",
+      "article_number": "",
+      "pages": "",
+      "doi": "10.1186/s12920-026-02441-3",
+      "official_url": "https://link.springer.com/article/10.1186/s12920-026-02441-3",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://link.springer.com/article/10.1186/s12920-026-02441-3",
+      "license": "CC BY-NC-ND 4.0",
+      "status": "Published",
+      "featured": true,
+      "scholar_url": "",
+      "in_scholar": "No",
+      "summary": "Cross-sectional molecular epidemiological study of 153 adults with confirmed pulmonary TB in Kampala, testing ten SP110 variants against six plasma cytokines; rs7580900 was associated with lower IL-10 after false-discovery-rate correction.",
+      "topics": [
+        "Genomics",
+        "Tuberculosis"
+      ],
+      "alt_versions": [],
+      "flags": [
+        "Volume and article number not yet assigned in publisher metadata",
+        "Publisher PDF not yet available (404); full text linked to the open-access article page"
+      ],
+      "doi_url": "https://doi.org/10.1186/s12920-026-02441-3",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": "https://scholar.google.com/scholar?q=%22Effect%20of%20SP110%20single%20nucleotide%20polymorphisms%20on%20expression%20of%20selected%20cytokines%20in%20a%20Ugandan%20population%20with%20pulmonary%20tuberculosis%22"
+    },
+    {
+      "id": "taremwa2026birth",
+      "category": "A",
+      "type": "Full-length article",
+      "title": "Factors associated with experiencing sub optimal birth intervals among Ugandan women of reproductive age using national surveys of 2000 to 2022",
+      "authors": [
+        "Kelly Taremwa",
+        "Jacob Muruhukye",
+        "Christopher Tibamwenda"
+      ],
+      "role": "Second author",
+      "year": 2026,
+      "date": "2026-11-14",
+      "venue": "Discover Public Health",
+      "publisher": "Springer Nature",
+      "volume": "23",
+      "issue": "1",
+      "article_number": "1797",
+      "pages": "",
+      "doi": "10.1186/s12982-026-03218-w",
+      "official_url": "https://link.springer.com/article/10.1186/s12982-026-03218-w",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://link.springer.com/content/pdf/10.1186/s12982-026-03218-w.pdf",
+      "license": "CC BY-NC-ND 4.0",
+      "status": "Published",
+      "featured": false,
+      "scholar_url": "",
+      "in_scholar": "No",
+      "summary": "Pooled analysis of five Uganda Demographic and Health Surveys (2000/01–2022; 28,059 women) showing suboptimal birth spacing fell from 89.0% to 81.8% and was linked to education, child death, unplanned births, female autonomy and ideal family size.",
+      "topics": [
+        "Maternal health",
+        "Survey data"
+      ],
+      "alt_versions": [
+        {
+          "label": "Preprint (Research Square, March 2026)",
+          "doi": "10.21203/rs.3.rs-8927717/v1",
+          "url": "https://doi.org/10.21203/rs.3.rs-8927717/v1",
+          "title": "Determinants of Suboptimal Birth Interval in Ugandan Women of Reproductive Age: A Generalized Linear Model Approach Using Modified Poisson Regression Analysis"
+        }
+      ],
+      "flags": [],
+      "doi_url": "https://doi.org/10.1186/s12982-026-03218-w",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": "https://scholar.google.com/scholar?q=%22Factors%20associated%20with%20experiencing%20sub%20optimal%20birth%20intervals%20among%20Ugandan%20women%20of%20reproductive%20age%20using%20national%20surveys%20of%202000%20to%202022%22"
+    },
+    {
+      "id": "muruhukye2026precision",
+      "category": "B",
+      "type": "Short research article",
+      "title": "Precision Medicine in Africa: A Systematic Review of Genomic Resilience and Structural Gaps",
+      "authors": [
+        "Jacob Muruhukye",
+        "Eleanor Sabuka",
+        "Anna Nakhabi",
+        "Mukisa Paul Brian",
+        "Nanono Gloria Margaret",
+        "Nabateregga Prossy",
+        "Eyong Peter Ebot"
+      ],
+      "role": "First author",
+      "year": 2026,
+      "date": "2026-06-06",
+      "venue": "Synthesis",
+      "publisher": "Synthesis (E156 Research Letter)",
+      "volume": "2",
+      "issue": "5",
+      "article_number": "",
+      "pages": "",
+      "doi": "",
+      "official_url": "https://synthesis-medicine.org/index.php/journal/article/view/43",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://synthesis-medicine.org/index.php/journal/article/download/43/346",
+      "license": "CC BY 4.0",
+      "status": "Published",
+      "featured": true,
+      "scholar_url": "",
+      "in_scholar": "No",
+      "summary": "Registry-based review of genomic and biomarker trials in Africa on ClinicalTrials.gov, set against biobank and H3Africa capacity; argues for investment in infrastructure, skills and data governance.",
+      "topics": [
+        "Genomics",
+        "Clinical trials",
+        "Systematic review"
+      ],
+      "alt_versions": [],
+      "flags": [
+        "No DOI assigned by the journal"
+      ],
+      "doi_url": "",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": "https://scholar.google.com/scholar?q=%22Precision%20Medicine%20in%20Africa%3A%20A%20Systematic%20Review%20of%20Genomic%20Resilience%20and%20Structural%20Gaps%22"
+    },
+    {
+      "id": "nakhabi2026zoonotic",
+      "category": "B",
+      "type": "Short research article",
+      "title": "Dynamics of Zoonotic Disease at the One Health Interface: Evidence from a Systematic Review",
+      "authors": [
+        "Anna Nakhabi",
+        "Jacob Muruhukye",
+        "Eleanor Sabuka",
+        "Christopher Tibamwenda",
+        "Lauritta Chinazaekpere Ndufeiya",
+        "Gloria Margaret Nanono",
+        "Olive Ebere Nwanja"
+      ],
+      "role": "Second author",
+      "year": 2026,
+      "date": "2026-06-06",
+      "venue": "Synthesis",
+      "publisher": "Synthesis (E156 Research Letter)",
+      "volume": "2",
+      "issue": "5",
+      "article_number": "",
+      "pages": "",
+      "doi": "",
+      "official_url": "https://synthesis-medicine.org/index.php/journal/article/view/53",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://synthesis-medicine.org/index.php/journal/article/download/53/587",
+      "license": "CC BY 4.0",
+      "status": "Published (version 2, corrected 10 July 2026)",
+      "featured": false,
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:2osOgNQ5qMEC",
+      "in_scholar": "Yes",
+      "summary": "Re-examines zoonotic-disease trial activity in Africa using ClinicalTrials.gov; the corrected analysis places the real gaps in the global shortage of zoonotic trials, outbreak-driven research and neglect of endemic zoonoses.",
+      "topics": [
+        "One Health",
+        "Clinical trials",
+        "Systematic review"
+      ],
+      "alt_versions": [],
+      "flags": [
+        "No DOI assigned by the journal"
+      ],
+      "doi_url": "",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": ""
+    },
+    {
+      "id": "nanono2026amr",
+      "category": "B",
+      "type": "Short research article",
+      "title": "The Antimicrobial-Resistance “Trial Deficit” in Africa, Re-examined: Why the Headline Statistic Fails and What the Real Gap Is: Antimicrobial Resistance Crisis",
+      "authors": [
+        "Gloria Margaret Nanono",
+        "Christopher Tibamwenda",
+        "Jacob Muruhukye",
+        "Grace Kemigisa",
+        "Peter Ebot Eyong",
+        "Fiona Obbo",
+        "Prossy Nabateregga"
+      ],
+      "role": "Third author",
+      "year": 2026,
+      "date": "2026-06-06",
+      "venue": "Synthesis",
+      "publisher": "Synthesis (E156 Research Letter)",
+      "volume": "2",
+      "issue": "5",
+      "article_number": "",
+      "pages": "",
+      "doi": "",
+      "official_url": "https://synthesis-medicine.org/index.php/journal/article/view/54",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://synthesis-medicine.org/index.php/journal/article/download/54/585",
+      "license": "CC BY 4.0",
+      "status": "Published (version 2, corrected 10 July 2026)",
+      "featured": false,
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:IjCSPb-OGe4C",
+      "in_scholar": "Yes (plus a duplicate entry)",
+      "summary": "Tests a widely cited claim of an antimicrobial-resistance “trial deficit” in Africa and identifies the actual gaps: too few AMR trials globally relative to burden, no novel-agent trials in Africa, and concentration in South Africa and MDR-TB.",
+      "topics": [
+        "Antimicrobial resistance",
+        "Clinical trials"
+      ],
+      "alt_versions": [
+        {
+          "label": "Earlier version indexed by Google Scholar as “Health and Disease Burden: Antimicrobial Resistance Crisis” (Synthēsis 3(1))",
+          "doi": "",
+          "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:zYLM7Y9cAGgC",
+          "title": "Health and Disease Burden: Antimicrobial Resistance Crisis"
+        }
+      ],
+      "flags": [
+        "No DOI assigned by the journal",
+        "Duplicate Google Scholar entry (version 1 under a different title)"
+      ],
+      "doi_url": "",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": ""
+    },
+    {
+      "id": "ebot2026community",
+      "category": "B",
+      "type": "Short research article",
+      "title": "Community advisory structure in African clinical trials: A registry-based analysis",
+      "authors": [
+        "Peter Eyong Ebot",
+        "Jacob Muruhukye",
+        "James Mukiibi",
+        "Spritney Nashua Ninpa",
+        "Christopher Tibamwenda",
+        "Meldwinel Ayuk",
+        "Prossy Nabateregga"
+      ],
+      "role": "Second author",
+      "year": 2026,
+      "date": "2026-06-06",
+      "venue": "Synthesis",
+      "publisher": "Synthesis (E156 Research Letter)",
+      "volume": "2",
+      "issue": "5",
+      "article_number": "",
+      "pages": "",
+      "doi": "",
+      "official_url": "https://synthesis-medicine.org/index.php/journal/article/view/37",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://synthesis-medicine.org/index.php/journal/article/download/37/340",
+      "license": "CC BY 4.0",
+      "status": "Published",
+      "featured": false,
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:9yKSN-GCB0IC",
+      "in_scholar": "Yes",
+      "summary": "Text-field analysis of 23,873 African interventional trials on ClinicalTrials.gov: only 0.9% reported formal community advisory structures, yet trials that did showed better completion and longer follow-up.",
+      "topics": [
+        "Clinical trials",
+        "Research ethics"
+      ],
+      "alt_versions": [],
+      "flags": [
+        "No DOI assigned by the journal"
+      ],
+      "doi_url": "",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": ""
+    },
+    {
+      "id": "kindiki2026archetypes",
+      "category": "B",
+      "type": "Short research article",
+      "title": "Research Archetypes and Cluster Mapping Narratives: A Semantic Comparison of Africa and Europe: Understanding innovation and evaluation framing in global Research Archetypes and Cluster Mapping",
+      "authors": [
+        "Agnes Kindiki",
+        "Christopher Tibamwenda",
+        "Jacob Muruhukye",
+        "Prossy Nabateregga",
+        "Peter Ebot Eyong"
+      ],
+      "role": "Third author",
+      "year": 2026,
+      "date": "2026-06-16",
+      "venue": "Synthesis",
+      "publisher": "Synthesis (E156 Research Letter)",
+      "volume": "2",
+      "issue": "6",
+      "article_number": "",
+      "pages": "",
+      "doi": "",
+      "official_url": "https://synthesis-medicine.org/index.php/journal/article/view/56",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://synthesis-medicine.org/index.php/journal/article/download/56/353",
+      "license": "CC BY 4.0",
+      "status": "Published",
+      "featured": false,
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:W7OEmFMy1HYC",
+      "in_scholar": "Yes",
+      "summary": "Semantic analysis of interventional trial descriptions showing that African studies emphasise feasibility and practical application while European studies more often use innovation language, with implications for global visibility.",
+      "topics": [
+        "Research systems",
+        "Text analysis"
+      ],
+      "alt_versions": [],
+      "flags": [
+        "No DOI assigned by the journal",
+        "Journal page lists Agnes Kindiki twice (as “Agnes Kindiki” and “Kindiki Agnes”); shown once here"
+      ],
+      "doi_url": "",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": ""
+    },
+    {
+      "id": "eyong2026biodigital",
+      "category": "B",
+      "type": "Short research article",
+      "title": "The Bio-Digital Divide: Digital trial adoption and the Bio-digital gap in Africa",
+      "authors": [
+        "Peter Ebot Eyong",
+        "Jacob Muruhukye",
+        "Rita Ewah Mbah",
+        "Endurance Lum Ambe",
+        "Vahid Esangaya Ntoung-Mbi",
+        "Spritney Nashua Ninpa",
+        "Gloria Margaret Nanono"
+      ],
+      "role": "Second author",
+      "year": 2026,
+      "date": "2026-06-06",
+      "venue": "Synthesis",
+      "publisher": "Synthesis (E156 Research Letter)",
+      "volume": "2",
+      "issue": "7",
+      "article_number": "",
+      "pages": "",
+      "doi": "",
+      "official_url": "https://synthesis-medicine.org/index.php/journal/article/view/75",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://synthesis-medicine.org/index.php/journal/article/download/75/368",
+      "license": "CC BY 4.0",
+      "status": "Published",
+      "featured": false,
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:UeHWp8X0CEIC",
+      "in_scholar": "Yes",
+      "summary": "Compares digital, wearable, virtual and decentralised trial features in 268 African and 4,540 US trials; about 1.1% of African trials used them, roughly 17 times fewer than in the US.",
+      "topics": [
+        "Digital health",
+        "Clinical trials"
+      ],
+      "alt_versions": [],
+      "flags": [
+        "No DOI assigned by the journal"
+      ],
+      "doi_url": "",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": ""
+    },
+    {
+      "id": "ebot2026sickle",
+      "category": "B",
+      "type": "Short research article",
+      "title": "Sickle Cell Disease Neglect: A Mismatch Between Burden and Research in Africa",
+      "authors": [
+        "Peter Eyong Ebot",
+        "Randolf Fuanghene Wefuan",
+        "Jacob Muruhukye",
+        "Rita Ewah Mbah",
+        "Enu-Ma Obi-Asu",
+        "Spritney Nashua Ninpa",
+        "Ebere Olive Nwanja"
+      ],
+      "role": "Third author",
+      "year": 2026,
+      "date": "2026-06-06",
+      "venue": "Synthesis",
+      "publisher": "Synthesis (E156 Research Letter)",
+      "volume": "2",
+      "issue": "7",
+      "article_number": "",
+      "pages": "",
+      "doi": "",
+      "official_url": "https://synthesis-medicine.org/index.php/journal/article/view/78",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://synthesis-medicine.org/index.php/journal/article/download/78/370",
+      "license": "CC BY 4.0",
+      "status": "Published",
+      "featured": false,
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:u-x6o8ySG0sC",
+      "in_scholar": "Yes",
+      "summary": "Audit of sickle cell disease trial registrations showing that research activity in Africa is poorly matched to the disease burden carried by African populations.",
+      "topics": [
+        "Sickle cell disease",
+        "Clinical trials"
+      ],
+      "alt_versions": [],
+      "flags": [
+        "No DOI assigned by the journal"
+      ],
+      "doi_url": "",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": ""
+    },
+    {
+      "id": "sseviiri2026land",
+      "category": "C",
+      "type": "Working paper",
+      "title": "Strengthening Urban Land Conflict Management and Tenure Security in Post-Covid Land Governance: Experiences and lessons from Lusanja and Lusanja informal settlements in Kampala City Region, Uganda",
+      "authors": [
+        "Hakimu Sseviiri",
+        "Jacob Muruhukye",
+        "Disan Byarugaba"
+      ],
+      "role": "Second author",
+      "year": 2026,
+      "date": "2026-06-01",
+      "venue": "GDN Working Paper Series",
+      "publisher": "Global Development Network",
+      "volume": "",
+      "issue": "",
+      "article_number": "Working Paper No. 119",
+      "pages": "",
+      "doi": "10.69814/wp/2026119",
+      "official_url": "https://www.gdn.int/strengthening-urban-land-conflict-management-and-tenure-security-post-covid-land-governance",
+      "pmid": "",
+      "pmcid": "",
+      "oa_url": "https://www.gdn.int/sites/default/files/WORKING%20PAPER%20SERIES%20no.119.pdf",
+      "license": "Free to read (publisher-hosted)",
+      "status": "Published",
+      "featured": false,
+      "scholar_url": "",
+      "in_scholar": "No",
+      "summary": "Survey of 211 residents of two Kampala informal settlements on how COVID-19 affected land conflicts and tenure security; recommends inclusive, responsive land governance and policy reform.",
+      "topics": [
+        "Urban resilience",
+        "Land governance"
+      ],
+      "alt_versions": [],
+      "flags": [
+        "Published title repeats “Lusanja”; abstract names the second settlement Ssekanyonyi — publisher error to raise with GDN"
+      ],
+      "doi_url": "https://doi.org/10.69814/wp/2026119",
+      "researchgate_url": "",
+      "in_researchgate": "Not yet checked",
+      "scholar_search_url": "https://scholar.google.com/scholar?q=%22Strengthening%20Urban%20Land%20Conflict%20Management%20and%20Tenure%20Security%20in%20Post-Covid%20Land%20Governance%3A%20Experiences%20and%20lessons%20from%20Lusanja%20and%20Lusanja%20informal%20settlements%20in%20Kampala%20City%20Region%2C%20Uganda%22"
+    }
+  ],
+  "under_review": [
+    {
+      "id": "ur-mis-anc",
+      "category": "E",
+      "type": "Manuscript under review",
+      "title": "Two co-authored analyses of antenatal care using Uganda Malaria Indicator Survey data",
+      "venue": "Discover Public Health",
+      "status": "Under review",
+      "note": "Titles withheld until acceptance (source: CV, November 2026)"
+    }
+  ],
+  "preprints": [
+    {
+      "id": "taremwa2026birth-preprint",
+      "category": "E",
+      "title": "Determinants of Suboptimal Birth Interval in Ugandan Women of Reproductive Age: A Generalized Linear Model Approach Using Modified Poisson Regression Analysis",
+      "authors": [
+        "Kelly Taremwa",
+        "Jacob Muruhukye",
+        "Christopher Tibamwenda"
+      ],
+      "year": 2026,
+      "date": "2026-03-18",
+      "venue": "Research Square",
+      "doi": "10.21203/rs.3.rs-8927717/v1",
+      "doi_url": "https://doi.org/10.21203/rs.3.rs-8927717/v1",
+      "license": "CC BY 4.0",
+      "status": "Preprint — published as 10.1186/s12982-026-03218-w",
+      "counted": false
+    }
+  ],
+  "not_mine_on_scholar": [
+    {
+      "title": "The Cyclical Pattern of Boom and Bust in Research Has Left Africa Unprepared for Emergencies Such as Ebola",
+      "authors": "G Kemigisha, IM Mirera, E Nakuya, MM Yusuf, P Nabateregga",
+      "venue": "Synthesis 2(7), 2026",
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:Y0pCki6q_DkC"
+    },
+    {
+      "title": "The Breast Cancer Clinical Trial Disparities in Africa: Limited Evidence for a High-Burden Population",
+      "authors": "J Nabaasa, N Janepher, P Eyong",
+      "venue": "Synthesis 2(6), 2026",
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:Tyk-4Ss8FVUC"
+    },
+    {
+      "title": "Global RCT Equity: Africa vs. Europe",
+      "authors": "G Emesu, LC Ndufeiya, E Nakuya, R Bwambale, PE Ebot, GM Nanono",
+      "venue": "Synthesis 2(6), 2026",
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:qjMakFHDy7sC"
+    },
+    {
+      "title": "Beyond the Gap: 80% Use, 0.0% Trials—The Traditional Medicine Research Void Across Africa",
+      "authors": "G Kemigisha, A Nakhabi, E Nakuya, PE Ebot, MM Yusuf, GM Nanono",
+      "venue": "Synthesis 2(5), 2026",
+      "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=0k0jKDUAAAAJ&citation_for_view=0k0jKDUAAAAJ:d1gkVwhDpl0C"
+    }
+  ]
+}

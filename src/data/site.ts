@@ -18,7 +18,7 @@ export const site = {
     github: 'https://github.com/muruhukyejacob',
     gainrep: 'https://www.gainrep.com/profile/muruhukye.jacob',
     // Add when available:
-    scholar: '',
+    scholar: 'https://scholar.google.com/citations?user=0k0jKDUAAAAJ',
     researchgate: '',
   },
   orcidId: '0009-0003-7534-7674',

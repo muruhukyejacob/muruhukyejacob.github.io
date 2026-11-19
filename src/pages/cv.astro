@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
 import { experience, fieldAssignments, education, certificates } from '../data/career';
-import { publications, typeLabels } from '../data/publications';
+import { publications, typeLabels, details } from '../data/publications';
 import { skillGroups } from '../data/work';
 ---
 <Base title="Curriculum Vitae" description="Curriculum vitae of Muruhukye Jacob — biostatistician, climate and health researcher, lecturer and statistical consultant in Kampala, Uganda.">
@@ -52,7 +52,7 @@ import { skillGroups } from '../data/work';
       <h2>Publications (2026)</h2>
       <ol class="pubs">
         {publications.map((p) => (
-          <li>{p.title}. <em>{p.venue}</em>{p.details ? ` ${p.details}` : ''} ({p.year}). {typeLabels[p.type]}; {p.role.toLowerCase()}. <a href={p.url}>{p.doi ? `doi:${p.doi}` : 'Link'}</a></li>
+          <li>{p.authors.join(', ')}. {p.title}. <em>{p.venue}</em>{details(p) ? ` ${details(p)}` : ''} ({p.year}). {typeLabels[p.category]}; {p.role.toLowerCase()}. <a href={p.doi_url || p.official_url}>{p.doi ? `doi:${p.doi}` : 'Link'}</a></li>
         ))}
       </ol>
 
