@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Socials from '../components/Socials.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+---
+<Base title="Contact" description="Contact Muruhukye Jacob for research collaboration, statistical consultancy, training or academic opportunities.">
+  <PageHero eyebrow="Contact" title="Let’s work together" lead="I welcome enquiries about research collaboration, statistical consultancy, training, teaching and employment opportunities." />
+  <section class="section">
+    <div class="container grid grid-2" style="align-items:start">
+      <div>
+        <h2>Send a message</h2>
+        <p class="muted">This form opens your email application with the message ready to send.</p>
+        <form id="contact-form" class="form" data-u={site.emailUser} data-d={site.emailDomain}>
+          <label>Your name<input name="name" required autocomplete="name" /></label>
+          <label>Your email<input name="email" type="email" required autocomplete="email" /></label>
+          <label>Enquiry type
+            <select name="type">
+              <option>Research collaboration</option>
+              <option>Statistical consultancy</option>
+              <option>Training</option>
+              <option>Teaching or employment opportunity</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Message<textarea name="message" rows="6" required></textarea></label>
+          <button class="btn btn-primary" type="submit"><Icon name="mail" size={18} /> Compose email</button>
+        </form>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Email</h3>
+          <p id="email-slot" class="muted">Enable JavaScript to see the email address.</p>
+          <h3 style="margin-top:1.2rem">Location</h3>
+          <p class="muted">{site.location} (East Africa Time, UTC+3)</p>
+          <h3 style="margin-top:1.2rem">Professional profiles</h3>
+          <Socials />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .form { display: grid; gap: 1rem; margin-top: 1rem; }
+  .form label { display: grid; gap: .35rem; font-weight: 600; font-size: .95rem; color: var(--navy); }
+  .form input, .form select, .form textarea { font: inherit; font-weight: 400; padding: .7rem .9rem; border: 1px solid #cfd5dc; border-radius: 10px; background: #fff; color: var(--ink); }
+  .form button { justify-self: start; }
+</style>
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const addr = `${form.dataset.u}@${form.dataset.d}`;
+  const slot = document.getElementById('email-slot')!;
+  if (form.dataset.u) {
+    slot.innerHTML = '';
+    const a = document.createElement('a');
+    a.href = `mailto:${addr}`; a.textContent = addr;
+    slot.appendChild(a); slot.classList.remove('muted');
+  }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = new FormData(form);
+    const subject = `${f.get('type')} enquiry from ${f.get('name')}`;
+    const body = `${f.get('message')}\n\n— ${f.get('name')} (${f.get('email')})`;
+    window.location.href = `mailto:${addr}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>

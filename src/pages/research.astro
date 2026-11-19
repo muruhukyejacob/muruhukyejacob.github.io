@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { publications, typeLabels, underReview } from '../data/publications';
+import { site } from '../data/site';
+
+const counts = {
+  all: publications.length,
+  article: publications.filter((p) => p.type === 'article').length,
+  short: publications.filter((p) => p.type === 'short').length,
+  'working-paper': publications.filter((p) => p.type === 'working-paper').length,
+};
+const firstAuthor = publications.filter((p) => p.role.startsWith('First')).length;
+const isMe = (a: string) => /Muruhukye/.test(a);
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': publications.map((p) => ({
+    '@type': p.type === 'working-paper' ? 'Report' : 'ScholarlyArticle',
+    headline: p.title,
+    name: p.title,
+    datePublished: p.date ?? String(p.year),
+    url: p.url,
+    ...(p.doi ? { identifier: `https://doi.org/${p.doi}` } : {}),
+    isPartOf: { '@type': 'Periodical', name: p.venue },
+    author: (p.authors.length ? p.authors : [site.altName]).map((n) => ({ '@type': 'Person', name: n })),
+  })),
+};
+---
+<Base title="Research & Publications" description="Publications by Muruhukye Jacob (Jacob Muruhukye): maternal health, tuberculosis genomics, clinical trials in Africa and urban land governance, with DOI links." jsonld={jsonld}>
+  <PageHero eyebrow="Research & publications" title="Publications" lead={`${counts.all} research outputs in 2026 — ${counts.article} full-length articles, ${counts.short} short papers and ${counts['working-paper']} working paper — including ${firstAuthor} as first author.`}>
+    <div class="profile-links">
+      <a class="btn btn-accent" href={site.links.orcid} rel="noopener" target="_blank">ORCID profile <Icon name="external" size={16} /></a>
+    </div>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="filters" role="group" aria-label="Filter publications">
+        <div class="chips">
+          <button class="chip active" data-filter="all" aria-pressed="true">All <span>{counts.all}</span></button>
+          <button class="chip" data-filter="article" aria-pressed="false">Full-length articles <span>{counts.article}</span></button>
+          <button class="chip" data-filter="short" aria-pressed="false">Short papers <span>{counts.short}</span></button>
+          <button class="chip" data-filter="working-paper" aria-pressed="false">Working papers <span>{counts['working-paper']}</span></button>
+          <button class="chip" data-filter="first" aria-pressed="false">First author <span>{firstAuthor}</span></button>
+        </div>
+        <label class="search">
+          <span class="visually-hidden">Search publications</span>
+          <input type="search" id="pub-search" placeholder="Search title, journal, co-author or topic…" />
+        </label>
+      </div>
+      <p id="pub-count" class="muted" aria-live="polite"></p>
+
+      <ol class="pub-list">
+        {publications.map((p) => (
+          <li class="pub card" data-type={p.type} data-first={p.role.startsWith('First') ? 'yes' : 'no'}
+              data-text={[p.title, p.venue, p.authors.join(' '), p.topics.join(' '), p.role].join(' ').toLowerCase()}>
+            <div class="meta">
+              <span class="tag">{typeLabels[p.type]}</span>
+              <span class="tag navy">{p.role}</span>
+              {p.topics.map((t) => <span class="tag teal">{t}</span>)}
+            </div>
+            <h3><a href={p.url} rel="noopener" target="_blank">{p.title}</a></h3>
+            {p.authors.length > 0 && (
+              <p class="authors">{p.authors.map((a, i) => <>{isMe(a) ? <strong>{a}</strong> : a}{i < p.authors.length - 1 ? ', ' : ''}</>)}</p>
+            )}
+            <p class="venue"><em>{p.venue}</em>{p.details ? `, ${p.details}` : ''} ({p.year})</p>
+            {p.summary && <p class="summary">{p.summary}</p>}
+            <div class="links">
+              <a href={p.url} rel="noopener" target="_blank">{p.doi ? `DOI: ${p.doi}` : 'Read publication'} <Icon name="external" size={14} /></a>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="card review">
+        <h3>Manuscripts under review</h3>
+        <ul>{underReview.map((u) => <li>{u}</li>)}</ul>
+        <p class="muted" style="margin:0">Titles will be added once the manuscripts are accepted.</p>
+      </div>
+      <p class="muted note">Short papers appear in <em>Synthesis</em> as research letters. Summaries are brief descriptions written for this site; please consult each publication for the full abstract.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .profile-links { margin-top: 1.4rem; }
+  .filters { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip { border: 1px solid var(--line); background: #fff; padding: .5rem .9rem; border-radius: 999px; font: inherit; font-size: .92rem; font-weight: 600; color: var(--navy); cursor: pointer; }
+  .chip span { color: var(--muted); font-weight: 500; margin-left: .2rem; }
+  .chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .chip.active span { color: #c9d6e4; }
+  .search input { width: min(360px, 100%); padding: .65rem 1rem; border: 1px solid var(--line); border-radius: 999px; font: inherit; font-size: .95rem; background: #fff; }
+  .search { flex: 1 1 260px; display: flex; justify-content: flex-end; }
+  @media (max-width: 700px) { .search { justify-content: stretch; } .search input { width: 100%; } }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .pub-list { list-style: none; padding: 0; margin: 1rem 0 2rem; display: grid; gap: 1rem; }
+  .pub h3 { font-size: 1.15rem; margin: .5rem 0 .4rem; }
+  .pub h3 a { color: var(--navy); text-decoration: none; }
+  .pub h3 a:hover { text-decoration: underline; }
+  .authors { font-size: .95rem; margin-bottom: .2rem; }
+  .venue { color: var(--muted); margin-bottom: .5rem; }
+  .summary { font-size: .97rem; }
+  .links a { font-weight: 600; font-size: .92rem; display: inline-flex; gap: .3rem; align-items: center; }
+  .review ul { padding-left: 1.1rem; }
+  .note { font-size: .9rem; margin-top: 1rem; }
+</style>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const items = document.querySelectorAll<HTMLElement>('.pub');
+  const search = document.getElementById('pub-search') as HTMLInputElement;
+  const count = document.getElementById('pub-count')!;
+  let filter = 'all';
+  function apply() {
+    const q = search.value.trim().toLowerCase();
+    let n = 0;
+    items.forEach((el) => {
+      const okType = filter === 'all' || (filter === 'first' ? el.dataset.first === 'yes' : el.dataset.type === filter);
+      const okText = !q || (el.dataset.text ?? '').includes(q);
+      const show = okType && okText;
+      el.hidden = !show;
+      if (show) n++;
+    });
+    count.textContent = `Showing ${n} of ${items.length} publications`;
+  }
+  chips.forEach((c) => c.addEventListener('click', () => {
+    chips.forEach((x) => { x.classList.remove('active'); x.setAttribute('aria-pressed', 'false'); });
+    c.classList.add('active'); c.setAttribute('aria-pressed', 'true');
+    filter = c.dataset.filter!;
+    apply();
+  }));
+  search.addEventListener('input', apply);
+  apply();
+</script>

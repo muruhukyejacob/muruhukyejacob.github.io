@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { certificates, milestones } from '../data/career';
+---
+<Base title="Achievements & Certifications" description="Achievements, certificates and career milestones of Muruhukye Jacob, including Good Clinical Practice certification and lead trainer recognition.">
+  <PageHero eyebrow="Achievements" title="Achievements and certifications" />
+  <section class="section">
+    <div class="container grid grid-2" style="align-items:start">
+      <div>
+        <h2>Certificates</h2>
+        <div class="grid">
+          {certificates.map((c) => (
+            <div class="card reveal">
+              <h3>{c.title}</h3>
+              <p class="muted" style="margin:0">{c.issuer}{c.date ? ` · ${c.date}` : ''}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h2>Career milestones</h2>
+        <ol class="timeline">
+          {milestones.map((m) => <li class="reveal"><span class="period">{m.year}</span><p>{m.text}</p></li>)}
+        </ol>
+      </div>
+    </div>
+  </section>
+</Base>

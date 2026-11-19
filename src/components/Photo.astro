@@ -1,0 +1,13 @@
+---
+// Responsive, optimised photo from src/assets/photos/<name>.jpg
+import { Image } from 'astro:assets';
+interface Props { name: string; alt: string; widths?: number[]; sizes?: string; class?: string; loading?: 'lazy' | 'eager'; aspect?: string }
+const { name, alt, widths = [480, 800, 1200], sizes = '(max-width: 800px) 100vw, 50vw', class: cls, loading = 'lazy', aspect } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/photos/*.jpg');
+const loader = images[`/src/assets/photos/${name}.jpg`];
+if (!loader) throw new Error(`Photo not found: ${name}`);
+const src = (await loader()).default;
+---
+<div class:list={['photo', cls]} style={aspect ? `aspect-ratio:${aspect}` : undefined}>
+  <Image src={src} alt={alt} widths={widths} sizes={sizes} loading={loading} format="webp" quality={78} />
+</div>

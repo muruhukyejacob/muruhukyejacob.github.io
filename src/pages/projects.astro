@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import { projects, gallery } from '../data/work';
+const areas = [...new Set(projects.map((p) => p.area))];
+---
+<Base title="Research Projects & Portfolio" description="Research projects by Muruhukye Jacob: climate risk and vulnerability in Karamoja, floods and health in Kampala and Kasese, heat waves in Kisoro, and urban co-design in Kampala.">
+  <PageHero eyebrow="Projects & portfolio" title="Research projects" lead="Selected completed and ongoing work in climate change, health and urban resilience. Descriptions summarise my role and methods; client data and unpublished findings are not shared." />
+
+  <section class="section">
+    <div class="container">
+      <div class="chips" role="group" aria-label="Filter projects by area">
+        <button class="chip active" data-area="all" aria-pressed="true">All</button>
+        {areas.map((a) => <button class="chip" data-area={a} aria-pressed="false">{a}</button>)}
+      </div>
+      <div class="proj-list">
+        {projects.map((p) => (
+          <article class="card proj reveal" id={p.slug} data-area={p.area}>
+            {p.image && <Photo name={p.image} alt={p.imageAlt!} aspect="4/3" widths={[400, 700]} sizes="(max-width: 800px) 100vw, 380px" />}
+            <div class="body">
+              <div><span class="tag teal">{p.area}</span><span class={`tag ${p.status === 'Ongoing' ? '' : 'navy'}`}>{p.status}</span></div>
+              <h2>{p.title}</h2>
+              <p class="muted where">{p.location} · {p.period}</p>
+              <p>{p.summary}</p>
+              <h3>My role</h3>
+              <ul>{p.role.map((r) => <li>{r}</li>)}</ul>
+              <div class="methods">{p.methods.map((m) => <span class="tag navy">{m}</span>)}</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <span class="eyebrow">In the field</span>
+      <h2>Workshops, training and fieldwork</h2>
+      <div class="gallery">
+        {gallery.map((g) => (
+          <figure class="reveal">
+            <Photo name={g.image} alt={g.alt} aspect="4/3" widths={[400, 700]} sizes="(max-width: 700px) 100vw, 360px" />
+            <figcaption>{g.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+  .chip { border: 1px solid var(--line); background: #fff; padding: .5rem .9rem; border-radius: 999px; font: inherit; font-size: .92rem; font-weight: 600; color: var(--navy); cursor: pointer; }
+  .chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .proj-list { display: grid; gap: 1.5rem; }
+  .proj { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 0; padding: 0; overflow: hidden; scroll-margin-top: 90px; }
+  .proj:not(:has(.photo)) { grid-template-columns: 1fr; }
+  .proj :global(.photo) { border-radius: 0; box-shadow: none; width: 100%; height: 100%; min-height: 240px; }
+  .proj .body { padding: 1.6rem 1.8rem; }
+  .proj h2 { font-size: 1.45rem; margin: .5rem 0 .2rem; }
+  .proj h3 { font-family: var(--sans); font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1rem 0 .3rem; }
+  .proj ul { padding-left: 1.1rem; margin: 0 0 1rem; }
+  .where { margin-bottom: .7rem; }
+  @media (max-width: 800px) { .proj { grid-template-columns: 1fr; } }
+  .gallery { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); margin-top: 1.5rem; }
+</style>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const cards = document.querySelectorAll<HTMLElement>('.proj');
+  chips.forEach((c) => c.addEventListener('click', () => {
+    chips.forEach((x) => { x.classList.remove('active'); x.setAttribute('aria-pressed', 'false'); });
+    c.classList.add('active'); c.setAttribute('aria-pressed', 'true');
+    cards.forEach((el) => { el.hidden = !(c.dataset.area === 'all' || el.dataset.area === c.dataset.area); });
+  }));
+</script>

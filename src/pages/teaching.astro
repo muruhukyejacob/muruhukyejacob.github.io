@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import { teaching } from '../data/work';
+---
+<Base title="Teaching & Training" description="Teaching and training by Muruhukye Jacob: statistics lecturing at Metropolitan International University and R, Stata, SPSS and data-tool training for researchers.">
+  <PageHero eyebrow="Teaching & training" title="Teaching, training and mentorship" lead="Building statistical and research capacity among students, researchers and field teams." />
+  <section class="section">
+    <div class="container grid grid-2" style="align-items:start">
+      <div>
+        <h2>University lecturing</h2>
+        <p><strong>Part-time Lecturer – Statistics</strong>, Metropolitan International University, Kampala (March 2026 – present). I teach, set and moderate examinations in:</p>
+        <ul class="mods">{teaching.modules.map((m) => <li>{m}</li>)}</ul>
+        <p>I also supervise interns and mentor students on data management and dissertation analysis.</p>
+      </div>
+      <div class="card">
+        <h2>Mentorship & thesis support</h2>
+        <p>More than <strong>30 Master’s and PhD students</strong> supported with data analysis, research methodology and the clear structuring of their dissertations and theses.</p>
+        <p class="muted" style="margin:0">Support covers analysis plans, survey and multilevel models, interpretation, and responses to examiners and reviewers.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="container">
+      <h2>Training engagements</h2>
+      <div class="grid grid-3" style="margin-top:1.4rem">
+        {teaching.trainings.map((t) => (
+          <article class="card tr reveal">
+            <Photo name={t.image} alt={t.imageAlt} aspect="4/3" widths={[400, 700]} sizes="(max-width: 700px) 100vw, 360px" />
+            <div class="b">
+              <span class="tag">{t.period}</span>
+              <h3>{t.title}</h3>
+              <p class="muted">{t.role}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .mods { padding-left: 1.1rem; }
+  .mods li { margin: .3rem 0; }
+  .tr { padding: 0; overflow: hidden; }
+  .tr :global(.photo) { border-radius: 0; box-shadow: none; }
+  .tr .b { padding: 1.2rem 1.4rem; }
+</style>

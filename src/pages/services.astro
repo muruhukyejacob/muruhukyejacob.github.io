@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { services } from '../data/work';
+const steps = [
+  { t: 'Scoping', d: 'We agree the research question, deliverables, timeline and data-protection arrangements.' },
+  { t: 'Design & tools', d: 'Study design, sample size, analysis plan and electronic data collection tools where needed.' },
+  { t: 'Analysis', d: 'Reproducible, documented analysis in R, Stata or Python, with clear tables and figures.' },
+  { t: 'Reporting', d: 'Interpretation, report or manuscript sections, and support with reviewer responses.' },
+];
+---
+<Base title="Consultancy Services" description="Statistical consultancy by Muruhukye Jacob in Kampala: data analysis, research design, sample size, KoboToolbox survey tools, data management, M&E, scientific writing and R/Stata training.">
+  <PageHero eyebrow="Consultancy & services" title="How I can help" lead="Independent statistical and research support for universities, research teams, NGOs, development partners and graduate students." />
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        {services.map((s) => (
+          <div class="card svc reveal">
+            <span class="ico"><Icon name={s.icon} size={24} /></span>
+            <h3>{s.title}</h3>
+            <p class="muted">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="container">
+      <span class="eyebrow">Process</span>
+      <h2>Working together</h2>
+      <ol class="steps">
+        {steps.map((s, i) => <li class="card reveal"><span class="n">{i + 1}</span><h3>{s.t}</h3><p class="muted">{s.d}</p></li>)}
+      </ol>
+      <p class="muted">All client data are handled confidentially and analysed with documented, reproducible scripts.</p>
+      <a class="btn btn-primary" href="/contact/">Discuss your project</a>
+    </div>
+  </section>
+</Base>
+<style>
+  .svc .ico { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #e2f1f2; color: var(--teal); margin-bottom: .9rem; }
+  .steps { list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); margin: 1.5rem 0; }
+  .n { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; margin-bottom: .6rem; }
+</style>

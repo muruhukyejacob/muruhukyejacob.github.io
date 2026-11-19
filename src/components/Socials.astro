@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+const l = site.links;
+const items = [
+  { href: l.linkedin, label: 'LinkedIn', icon: 'linkedin' },
+  { href: l.orcid, label: 'ORCID', icon: 'orcid' },
+  { href: l.scholar, label: 'Google Scholar', icon: 'cap' },
+  { href: l.researchgate, label: 'ResearchGate', icon: 'people' },
+  { href: l.github, label: 'GitHub', icon: 'github' },
+  { href: l.gainrep, label: 'GainRep', icon: 'star' },
+].filter((i) => i.href);
+---
+<div class="socials">
+  {items.map((i) => (
+    <a href={i.href} rel="me noopener" target="_blank"><Icon name={i.icon} size={18} />{i.label}</a>
+  ))}
+</div>

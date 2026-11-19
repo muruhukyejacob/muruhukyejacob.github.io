@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { experience, fieldAssignments } from '../data/career';
+---
+<Base title="Professional Experience" description="Professional experience of Muruhukye Jacob: Statistician and Researcher at MUCCRI and the Urban Action Lab, Makerere University; statistics lecturer; statistical consultant.">
+  <PageHero eyebrow="Experience" title="Professional experience" lead="Research, data management, teaching and consultancy roles in Uganda." />
+  <section class="section">
+    <div class="container narrow">
+      <h2>Employment</h2>
+      <ol class="timeline">
+        {experience.map((e) => (
+          <li class="reveal">
+            <span class="period">{e.period}</span>
+            <h3>{e.role}</h3>
+            <div class="org">{e.org}, {e.place}</div>
+            <ul>{e.points.map((p) => <li>{p}</li>)}</ul>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="container narrow">
+      <h2>Selected field and data assignments</h2>
+      <ol class="timeline">
+        {fieldAssignments.map((f) => (
+          <li class="reveal">
+            <span class="period">{f.period}</span>
+            <h3>{f.role}</h3>
+            <div class="org">{f.org}</div>
+            <p>{f.text}</p>
+          </li>
+        ))}
+      </ol>
+      <p><a class="btn btn-ghost" href="/cv/">View full CV</a></p>
+    </div>
+  </section>
+</Base>
+<style>.narrow { max-width: 880px; }</style>

@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { skillGroups } from '../data/work';
+---
+<Base title="Skills & Technical Expertise" description="Technical skills of Muruhukye Jacob: R, Stata, Python, SQL, SPSS; multilevel, survival and causal-inference methods; KoboToolbox, ODK, SurveyCTO; NVivo, MAXQDA; AI-assisted research workflows.">
+  <PageHero eyebrow="Skills" title="Technical expertise" lead="Statistical software, methods, data systems and research tools I use in day-to-day work." />
+  <section class="section">
+    <div class="container grid grid-2">
+      {skillGroups.map((g) => (
+        <div class="card reveal">
+          <h3>{g.title}</h3>
+          <div>{g.items.map((i) => <span class="tag navy">{i}</span>)}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="container narrow">
+      <h2>Responsible use of AI in research</h2>
+      <p>I use AI tools to support coding, document review, information synthesis and teaching preparation — always with independent verification of every output, and with attention to accurate referencing, confidentiality and research integrity.</p>
+    </div>
+  </section>
+</Base>
+<style>.narrow { max-width: 820px; }</style>

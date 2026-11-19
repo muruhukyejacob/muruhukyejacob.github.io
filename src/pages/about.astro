@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Socials from '../components/Socials.astro';
+import { education } from '../data/career';
+import { interests, site } from '../data/site';
+---
+<Base title="About" description="Biography of Muruhukye Jacob, a Ugandan biostatistician and researcher at Makerere University working on climate change, health and urban resilience.">
+  <PageHero eyebrow="About me" title="Biostatistician, researcher and educator" lead="I help research teams design rigorous studies, collect reliable data and turn it into credible, publishable evidence." />
+
+  <section class="section">
+    <div class="container about-grid">
+      <div>
+        <h2>Biography</h2>
+        <p>Muruhukye Jacob is a Ugandan biostatistician and researcher based in Kampala. He holds a Bachelor of Science in Statistics from Kyambogo University and is in the final stage of a Master of Biostatistics at Makerere University School of Public Health.</p>
+        <p>Since May 2025 he has worked as a Statistician and Researcher at Makerere University’s Centre for Climate Change Research and Innovation (MUCCRI) and the Urban Action Lab, where he leads statistical analysis and data systems for studies on floods and health, heat waves, climate vulnerability, migration and nature-based solutions. His fieldwork spans Kampala, Wakiso, Kasese, Hoima, Kisoro and the Karamoja sub-region.</p>
+        <p>Jacob supports research from design to publication: research methodology, questionnaire and electronic data collection tool design, field data quality assurance, quantitative and qualitative analysis, and manuscript writing and review. In 2026 he published eleven research outputs — two as first author — in maternal health, tuberculosis genomics, African clinical-trial research and urban land governance. He has supported more than 30 Master’s and PhD students with data analysis, methodology and the structuring of their dissertations and theses.</p>
+        <p>He also teaches statistics part-time at Metropolitan International University, co-founded the statistical consultancy ASCA Consult, and works as a virtual Research Officer with RineCynth Advisory Limited. He codes in R, Stata, Python and SQL, and uses AI tools responsibly — with independent verification — to make research workflows faster and more reliable.</p>
+        <p>He speaks {site.languages.join(', ').replace(/, ([^,]*)$/, ' and $1')}.</p>
+        <Socials />
+      </div>
+      <aside>
+        <Photo name="conference-serena" alt="Muruhukye Jacob at a renewable energy conference at the Kampala Serena Hotel" aspect="3/4" widths={[400, 700]} sizes="(max-width: 900px) 100vw, 380px" />
+        <div class="card" style="margin-top:1.4rem">
+          <h3>Research interests</h3>
+          <ul class="tight">{interests.map((i) => <li>{i}</li>)}</ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section alt" id="education">
+    <div class="container">
+      <span class="eyebrow">Education</span>
+      <h2>Academic background</h2>
+      <ol class="timeline" style="margin-top:1.5rem">
+        {education.map((e) => (
+          <li class="reveal">
+            <span class="period">{e.period}</span>
+            <h3>{e.award}</h3>
+            <div class="org">{e.org}</div>
+            {e.note && <p>{e.note}</p>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Affiliations</span>
+      <h2>Current professional affiliations</h2>
+      <div class="grid grid-3" style="margin-top:1.2rem">
+        <div class="card"><h3>MUCCRI</h3><p class="muted">Makerere University Centre for Climate Change Research and Innovation — Statistician & Researcher</p></div>
+        <div class="card"><h3>Urban Action Lab</h3><p class="muted">Makerere University — Statistician, Researcher and Trainer</p></div>
+        <div class="card"><h3>Metropolitan International University</h3><p class="muted">Part-time Lecturer, Statistics</p></div>
+        <div class="card"><h3>ASCA Consult</h3><p class="muted">Co-Founder and Statistical Consultant</p></div>
+        <div class="card"><h3>RineCynth Advisory Limited</h3><p class="muted">Research Officer (virtual)</p></div>
+      </div>
+      <p class="muted" style="margin-top:1.2rem">See also <a href="/experience/">professional experience</a> and <a href="/achievements/">achievements and certificates</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+  .tight { padding-left: 1.1rem; margin: 0; }
+  .tight li { margin: .3rem 0; }
+</style>

@@ -1,0 +1,127 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import Socials from '../components/Socials.astro';
+import { site, nav } from '../data/site';
+
+interface Props { title?: string; description?: string; image?: string; jsonld?: object }
+const { title, description = site.description, image = '/og-image.jpg', jsonld } = Astro.props;
+const fullTitle = title ? `${title} | ${site.name}` : site.title;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL(image, site.url).href;
+const path = Astro.url.pathname;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  alternateName: site.altName,
+  url: site.url,
+  image: ogImage,
+  jobTitle: 'Biostatistician and Researcher',
+  description: site.description,
+  address: { '@type': 'PostalAddress', addressLocality: 'Kampala', addressCountry: 'UG' },
+  worksFor: [
+    { '@type': 'Organization', name: 'Makerere University Centre for Climate Change Research and Innovation (MUCCRI)' },
+    { '@type': 'Organization', name: 'Urban Action Lab, Makerere University' },
+  ],
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Kyambogo University' },
+    { '@type': 'CollegeOrUniversity', name: 'Makerere University School of Public Health' },
+  ],
+  knowsAbout: ['Biostatistics', 'Epidemiology', 'Climate change and health', 'Statistical modelling', 'Survey methodology', 'Data management', 'R', 'Stata'],
+  knowsLanguage: site.languages,
+  identifier: { '@type': 'PropertyValue', propertyID: 'ORCID', value: site.orcidId },
+  sameAs: Object.values(site.links).filter(Boolean),
+};
+---
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content={site.name} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <meta name="theme-color" content="#0e2a47" />
+  <meta property="og:type" content="profile" />
+  <meta property="profile:first_name" content="Jacob" />
+  <meta property="profile:last_name" content="Muruhukye" />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <script type="application/ld+json" set:html={JSON.stringify(person)} />
+  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+  <script is:inline>document.documentElement.classList.replace('no-js','js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container bar">
+      <a class="brand" href="/" aria-label={`${site.name} — home`}><span class="brand-mark">MJ</span>{site.name}</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><Icon name="menu" /></button>
+      <nav id="site-nav" class="nav" aria-label="Main">
+        {nav.map((n) => <a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>)}
+        <a class="contact" href="/contact/" aria-current={path.startsWith('/contact') ? 'page' : undefined}>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main"><slot /></main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="cols">
+        <div>
+          <h2>{site.name}</h2>
+          <p>Biostatistician and researcher working on climate change, health and urban resilience in Uganda and East Africa.</p>
+          <p><Icon name="pin" size={16} /> {site.location}</p>
+        </div>
+        <div>
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/research/">Research & publications</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/services/">Consultancy services</a></li>
+            <li><a href="/achievements/">Achievements & certificates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Profiles</h2>
+          <ul>
+            <li><a href={site.links.orcid} rel="me noopener">ORCID</a></li>
+            <li><a href={site.links.linkedin} rel="me noopener">LinkedIn</a></li>
+            <li><a href={site.links.github} rel="me noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="legal">© {new Date().getFullYear()} {site.name}. Affiliations are listed for information and do not imply institutional endorsement.</p>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+    const navEl = document.getElementById('site-nav');
+    btn?.addEventListener('click', () => {
+      const open = navEl!.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

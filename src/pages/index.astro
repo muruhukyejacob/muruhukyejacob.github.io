@@ -1,0 +1,159 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import Socials from '../components/Socials.astro';
+import { site, stats, interests } from '../data/site';
+import { publications, typeLabels } from '../data/publications';
+import { projects, services } from '../data/work';
+
+const featuredPubs = publications.filter((p) => p.type === 'article');
+const featuredProjects = projects.filter((p) => p.image).slice(0, 3);
+const expertise = [
+  { icon: 'chart', title: 'Biostatistics & modelling', text: 'GLMs, multilevel and survival models, causal inference and complex survey analysis in R, Stata and Python.' },
+  { icon: 'target', title: 'Climate & health research', text: 'Floods, heat waves, climate vulnerability and nature-based solutions across Uganda.' },
+  { icon: 'database', title: 'Data systems & quality', text: 'Validated KoboToolbox, ODK and SurveyCTO tools with same-day quality checks and reproducible cleaning.' },
+  { icon: 'teach', title: 'Teaching & training', text: 'University statistics lecturing and hands-on R, Stata and data-tool training for researchers.' },
+];
+---
+<Base>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">Biostatistician · Researcher · Lecturer</span>
+        <h1>Turning data into evidence for health and climate resilience.</h1>
+        <p class="lead">I am <strong>Muruhukye Jacob</strong>, a biostatistician and researcher at Makerere University’s Centre for Climate Change Research and Innovation and the Urban Action Lab. I support research from design to publication — methodology, electronic data systems, quantitative and qualitative analysis, and scientific writing.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/research/">View publications <Icon name="arrow" size={18} /></a>
+          <a class="btn btn-ghost" href="/contact/">Work with me</a>
+        </div>
+        <Socials />
+      </div>
+      <div class="hero-photo">
+        <Photo name="portrait" alt="Portrait of Muruhukye Jacob in a navy suit" loading="eager" widths={[400, 700, 900]} sizes="(max-width: 900px) 80vw, 440px" />
+        <div class="badge"><Icon name="pin" size={16} /> {site.location}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-band">
+    <div class="container grid grid-4">
+      {stats.map((s) => (
+        <div class="stat reveal"><span class="num">{s.value}</span><span class="lbl">{s.label}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Expertise</span>
+      <h2>What I do</h2>
+      <div class="grid grid-4" style="margin-top:1.5rem">
+        {expertise.map((e) => (
+          <div class="card reveal exp">
+            <span class="ico"><Icon name={e.icon} size={24} /></span>
+            <h3>{e.title}</h3>
+            <p class="muted">{e.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="head-row">
+        <div><span class="eyebrow">Selected research</span><h2>Recent publications</h2></div>
+        <a href="/research/" class="btn btn-ghost">All 11 outputs <Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="grid grid-3" style="margin-top:1.5rem">
+        {featuredPubs.map((p) => (
+          <article class="card reveal pub">
+            <div><span class="tag">{typeLabels[p.type]}</span><span class="tag navy">{p.role}</span></div>
+            <h3><a href={p.url} rel="noopener" target="_blank">{p.title}</a></h3>
+            <p class="muted"><em>{p.venue}</em> ({p.year})</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="head-row">
+        <div><span class="eyebrow">Portfolio</span><h2>Selected projects</h2></div>
+        <a href="/projects/" class="btn btn-ghost">All projects <Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="grid grid-3" style="margin-top:1.5rem">
+        {featuredProjects.map((p) => (
+          <a class="card proj reveal" href={`/projects/#${p.slug}`}>
+            <Photo name={p.image!} alt={p.imageAlt!} aspect="4/3" widths={[400, 700]} sizes="(max-width: 700px) 100vw, 360px" />
+            <div class="proj-body">
+              <span class="tag teal">{p.area}</span>
+              <h3>{p.title}</h3>
+              <p class="muted">{p.location} · {p.period}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container grid grid-2" style="align-items:center">
+      <div>
+        <span class="eyebrow">Research interests</span>
+        <h2>Questions I work on</h2>
+        <ul class="interest-list">
+          {interests.map((i) => <li>{i}</li>)}
+        </ul>
+      </div>
+      <Photo name="workshop-facilitation" alt="Muruhukye Jacob facilitating a community co-design workshop" aspect="3/2" />
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="container">
+      <h2>Planning a study or need analysis support?</h2>
+      <p class="lead">I work with universities, research teams, NGOs and development partners on {services.length} core services — from sample size to submission-ready manuscripts.</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="/services/">See services</a>
+        <a class="btn btn-ghost light" href="/contact/">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 4.5rem); background: radial-gradient(1200px 500px at 85% 0%, #f3e6cf 0%, transparent 60%), var(--paper); }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr .9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero h1 { margin-bottom: .5em; }
+  .hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin: 1.6rem 0 1.4rem; }
+  .hero-photo { position: relative; max-width: 440px; justify-self: center; width: 100%; }
+  .hero-photo :global(.photo) { border-radius: 24px; box-shadow: 0 30px 60px -20px rgba(14,42,71,.35); }
+  .hero-photo::before { content: ''; position: absolute; inset: 18px -18px -18px 18px; border: 2px solid var(--accent); border-radius: 24px; z-index: -1; }
+  .badge { position: absolute; left: -14px; bottom: 26px; background: #fff; padding: .55rem .9rem; border-radius: 999px; box-shadow: var(--shadow); font-weight: 600; font-size: .9rem; color: var(--navy); display: flex; gap: .35rem; align-items: center; }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero-photo { order: -1; max-width: 320px; } }
+  .stats-band { background: var(--navy); color: #fff; padding: 2.2rem 0; }
+  .stat { display: flex; flex-direction: column; gap: .2rem; border-left: 3px solid var(--accent); padding-left: 1rem; }
+  .stat .num { font-family: var(--serif); font-size: 2.4rem; font-weight: 700; line-height: 1; }
+  .stat .lbl { color: #c9d6e4; font-size: .95rem; }
+  .exp .ico { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); margin-bottom: .9rem; }
+  .head-row { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; }
+  .pub h3 { font-size: 1.08rem; margin-top: .6rem; }
+  .pub h3 a { color: var(--navy); text-decoration: none; }
+  .pub h3 a:hover { text-decoration: underline; }
+  .proj { padding: 0; overflow: hidden; text-decoration: none; color: inherit; transition: transform .2s; }
+  .proj:hover { transform: translateY(-3px); }
+  .proj :global(.photo) { border-radius: 0; box-shadow: none; }
+  .proj-body { padding: 1.2rem 1.4rem 1.4rem; }
+  .interest-list { padding: 0; list-style: none; display: grid; gap: .55rem; }
+  .interest-list li { padding-left: 1.6rem; position: relative; }
+  .interest-list li::before { content: ''; position: absolute; left: 0; top: .6em; width: .8rem; height: 2px; background: var(--accent); }
+  .cta { background: linear-gradient(135deg, var(--navy), #1b4b6f); color: #fff; text-align: center; }
+  .cta h2 { color: #fff; }
+  .cta .lead { color: #c9d6e4; margin-inline: auto; }
+  .cta .hero-actions { justify-content: center; }
+  .btn-ghost.light { border-color: #fff; color: #fff; }
+  .btn-ghost.light:hover { background: #fff; color: var(--navy); }
+</style>

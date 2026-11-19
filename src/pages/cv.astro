@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { experience, fieldAssignments, education, certificates } from '../data/career';
+import { publications, typeLabels } from '../data/publications';
+import { skillGroups } from '../data/work';
+---
+<Base title="Curriculum Vitae" description="Curriculum vitae of Muruhukye Jacob — biostatistician, climate and health researcher, lecturer and statistical consultant in Kampala, Uganda.">
+  <section class="section cv">
+    <div class="container narrow">
+      <div class="cv-actions no-print">
+        <a class="btn btn-primary" href="/Muruhukye_Jacob_CV.pdf" download><Icon name="download" size={18} /> Download PDF</a>
+        <button class="btn btn-ghost" onclick="window.print()">Print</button>
+      </div>
+      <header class="cv-head">
+        <h1>{site.name}</h1>
+        <p class="role">Biostatistician | Climate & Health Researcher | Lecturer | Statistical Consultant</p>
+        <p class="muted">{site.location} · <a href={site.url}>{site.url.replace('https://', '')}</a> · <a href={site.links.linkedin}>LinkedIn</a> · <a href={site.links.orcid}>ORCID {site.orcidId}</a></p>
+      </header>
+
+      <h2>Profile</h2>
+      <p>Biostatistician and researcher (BSc Statistics, Kyambogo University; Master of Biostatistics in final stage, Makerere University School of Public Health) working on climate change, health and urban resilience research at Makerere University’s Centre for Climate Change Research and Innovation (MUCCRI) and the Urban Action Lab. I support research from design to publication: methodology, electronic data collection tool design, field data quality assurance, quantitative and qualitative analysis, and manuscript writing. Eleven research outputs published in 2026 (two as first author); more than 30 Master’s and PhD students supported.</p>
+
+      <h2>Professional experience</h2>
+      {experience.map((e) => (
+        <div class="item">
+          <div class="line"><strong>{e.role}</strong><span>{e.period}</span></div>
+          <div class="muted">{e.org}, {e.place}</div>
+          <ul>{e.points.map((p) => <li>{p}</li>)}</ul>
+        </div>
+      ))}
+
+      <h2>Selected field and data assignments</h2>
+      {fieldAssignments.map((f) => (
+        <div class="item">
+          <div class="line"><strong>{f.role}</strong><span>{f.period}</span></div>
+          <div class="muted">{f.org}</div>
+          <p>{f.text}</p>
+        </div>
+      ))}
+
+      <h2>Education</h2>
+      {education.map((e) => (
+        <div class="item">
+          <div class="line"><strong>{e.award}</strong><span>{e.period}</span></div>
+          <div class="muted">{e.org}</div>
+          {e.note && <p>{e.note}</p>}
+        </div>
+      ))}
+
+      <h2>Publications (2026)</h2>
+      <ol class="pubs">
+        {publications.map((p) => (
+          <li>{p.title}. <em>{p.venue}</em>{p.details ? ` ${p.details}` : ''} ({p.year}). {typeLabels[p.type]}; {p.role.toLowerCase()}. <a href={p.url}>{p.doi ? `doi:${p.doi}` : 'Link'}</a></li>
+        ))}
+      </ol>
+
+      <h2>Technical skills</h2>
+      {skillGroups.map((g) => <p><strong>{g.title}:</strong> {g.items.join(', ')}.</p>)}
+
+      <h2>Certificates</h2>
+      <ul>{certificates.map((c) => <li>{c.title} — {c.issuer}{c.date ? `, ${c.date}` : ''}.</li>)}</ul>
+
+      <h2>Languages</h2>
+      <p>{site.languages.join(', ')}.</p>
+      <p class="muted">Referees available on request.</p>
+    </div>
+  </section>
+</Base>
+<style>
+  .narrow { max-width: 860px; }
+  .cv-actions { display: flex; gap: .7rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .cv-head { border-bottom: 3px solid var(--accent); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+  .cv-head h1 { margin-bottom: .2rem; }
+  .role { font-weight: 600; color: var(--navy); margin-bottom: .3rem; }
+  .cv h2 { font-size: 1.3rem; border-bottom: 1px solid var(--line); padding-bottom: .3rem; margin: 2rem 0 1rem; }
+  .item { margin-bottom: 1.1rem; }
+  .line { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .line span { color: var(--accent); font-weight: 600; font-size: .92rem; white-space: nowrap; }
+  .item ul { margin: .3rem 0 0; padding-left: 1.1rem; }
+  .pubs { padding-left: 1.3rem; }
+  .pubs li { margin: .45rem 0; font-size: .97rem; }
+  @media print { .cv h2 { margin: 1rem 0 .5rem; } .cv { padding: 0; } }
+</style>
