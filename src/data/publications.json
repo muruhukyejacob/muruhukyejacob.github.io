@@ -10,7 +10,11 @@
   "profiles": {
     "orcid": "https://orcid.org/0009-0003-7534-7674",
     "google_scholar": "https://scholar.google.com/citations?user=0k0jKDUAAAAJ",
-    "researchgate": ""
+    "researchgate": "",
+    "researchgate_unclaimed_author_pages": [
+      "https://www.researchgate.net/scientific-contributions/Jacob-Muruhukye-2364156400",
+      "https://www.researchgate.net/scientific-contributions/Muruhukye-Jacob-2344324823"
+    ]
   },
   "updated": "2026-11-19",
   "categories": {
@@ -58,8 +62,8 @@
       "alt_versions": [],
       "flags": [],
       "doi_url": "https://doi.org/10.1186/s40748-026-00308-0",
-      "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "researchgate_url": "https://www.researchgate.net/publication/417404545_Determinants_of_optimal_number_of_ANC_visits_among_women_of_reproductive_age_in_Uganda_using_modified_poisson_GLM_regression_analysis",
+      "in_researchgate": "Record exists (author entry unclaimed)",
       "scholar_search_url": ""
     },
     {
@@ -109,8 +113,8 @@
         "Publisher PDF not yet available (404); full text linked to the open-access article page"
       ],
       "doi_url": "https://doi.org/10.1186/s12920-026-02441-3",
-      "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "researchgate_url": "https://www.researchgate.net/publication/412087671_Effect_of_SP110_single_nucleotide_polymorphisms_on_expression_of_selected_cytokines_in_a_Ugandan_population_with_pulmonary_tuberculosis",
+      "in_researchgate": "Record exists (author entry unclaimed)",
       "scholar_search_url": "https://scholar.google.com/scholar?q=%22Effect%20of%20SP110%20single%20nucleotide%20polymorphisms%20on%20expression%20of%20selected%20cytokines%20in%20a%20Ugandan%20population%20with%20pulmonary%20tuberculosis%22"
     },
     {
@@ -157,8 +161,8 @@
       ],
       "flags": [],
       "doi_url": "https://doi.org/10.1186/s12982-026-03218-w",
-      "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "researchgate_url": "https://www.researchgate.net/publication/417894218_Factors_associated_with_experiencing_sub_optimal_birth_intervals_among_Ugandan_women_of_reproductive_age_using_national_surveys_of_2000_to_2022",
+      "in_researchgate": "Record exists (author entry unclaimed)",
       "scholar_search_url": "https://scholar.google.com/scholar?q=%22Factors%20associated%20with%20experiencing%20sub%20optimal%20birth%20intervals%20among%20Ugandan%20women%20of%20reproductive%20age%20using%20national%20surveys%20of%202000%20to%202022%22"
     },
     {
@@ -206,7 +210,7 @@
       ],
       "doi_url": "",
       "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "in_researchgate": "Not found in author-name search (title check blocked by ResearchGate)",
       "scholar_search_url": "https://scholar.google.com/scholar?q=%22Precision%20Medicine%20in%20Africa%3A%20A%20Systematic%20Review%20of%20Genomic%20Resilience%20and%20Structural%20Gaps%22"
     },
     {
@@ -254,7 +258,7 @@
       ],
       "doi_url": "",
       "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "in_researchgate": "Not found in author-name search (title check blocked by ResearchGate)",
       "scholar_search_url": ""
     },
     {
@@ -309,7 +313,7 @@
       ],
       "doi_url": "",
       "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "in_researchgate": "Not found in author-name search (title check blocked by ResearchGate)",
       "scholar_search_url": ""
     },
     {
@@ -356,7 +360,7 @@
       ],
       "doi_url": "",
       "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "in_researchgate": "Not found in author-name search (title check blocked by ResearchGate)",
       "scholar_search_url": ""
     },
     {
@@ -402,7 +406,7 @@
       ],
       "doi_url": "",
       "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "in_researchgate": "Not found in author-name search (title check blocked by ResearchGate)",
       "scholar_search_url": ""
     },
     {
@@ -449,7 +453,7 @@
       ],
       "doi_url": "",
       "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "in_researchgate": "Not found in author-name search (title check blocked by ResearchGate)",
       "scholar_search_url": ""
     },
     {
@@ -496,7 +500,7 @@
       ],
       "doi_url": "",
       "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "in_researchgate": "Not found in author-name search (title check blocked by ResearchGate)",
       "scholar_search_url": ""
     },
     {
@@ -539,7 +543,7 @@
       ],
       "doi_url": "https://doi.org/10.69814/wp/2026119",
       "researchgate_url": "",
-      "in_researchgate": "Not yet checked",
+      "in_researchgate": "Not found in author-name search (title check blocked by ResearchGate)",
       "scholar_search_url": "https://scholar.google.com/scholar?q=%22Strengthening%20Urban%20Land%20Conflict%20Management%20and%20Tenure%20Security%20in%20Post-Covid%20Land%20Governance%3A%20Experiences%20and%20lessons%20from%20Lusanja%20and%20Lusanja%20informal%20settlements%20in%20Kampala%20City%20Region%2C%20Uganda%22"
     }
   ],
@@ -571,7 +575,8 @@
       "doi_url": "https://doi.org/10.21203/rs.3.rs-8927717/v1",
       "license": "CC BY 4.0",
       "status": "Preprint — published as 10.1186/s12982-026-03218-w",
-      "counted": false
+      "counted": false,
+      "researchgate_url": "https://www.researchgate.net/publication/402665028_Determinants_of_Suboptimal_Birth_Interval_in_Ugandan_Women_of_Reproductive_Age_A_Generalized_Linear_Model_Approach_Using_Modified_Poisson_Regression_Analysis"
     }
   ],
   "not_mine_on_scholar": [
